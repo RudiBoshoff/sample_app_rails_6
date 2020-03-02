@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com",
+    @user = User.new(name: "User", email: "valid@example.com",
                      password: '123456', password_confirmation: '123456')
   end
   
@@ -32,7 +32,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'that user email has the correct format' do
-    valid_addresses = %w[user@example.com
+    valid_addresses = %w[email@example.com
                       USER@foo.COM
                       a_US-er@foo.bar.org 
                       first.last@foo.net
