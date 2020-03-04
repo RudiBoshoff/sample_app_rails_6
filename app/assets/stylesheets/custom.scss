@@ -204,3 +204,21 @@ input {
         color: $state-danger-text;
     }
 }
+
+// remember me
+.checkbox {
+    margin-top: -10px;
+    margin-bottom: 10px;
+
+    span {
+        margin-left: 20px;
+        top: 2px;
+        position: relative;
+        font-weight: 400;
+    }
+}
+
+#session_remember_me {
+    width: auto;
+    margin-left: 0;;
+}
