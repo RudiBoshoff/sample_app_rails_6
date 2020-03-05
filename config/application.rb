@@ -17,7 +17,6 @@ module SampleApp
     # the framework and any gems in your application.
 
     # CODE YOU SHOULD ADD vvvvvv
-    # TODO: Remove this code block if routing issues
     initializer(:remove_action_mailbox_and_activestorage_routes, after: :add_routing_paths) { |app|
       app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/}
       app.routes_reloader.paths.delete_if {|path| path =~ /actionmailbox/ }

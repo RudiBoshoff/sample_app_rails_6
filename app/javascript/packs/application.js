@@ -8,7 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-// TODO: Finally, we need to require jQuery and import Bootstrap in our 
+// Finally, we need to require jQuery and import Bootstrap in our 
 // application.js file, as shown in Listing 8.21.
 require("jquery")
 import "bootstrap"
