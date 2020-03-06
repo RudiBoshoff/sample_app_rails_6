@@ -25,8 +25,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'users/show'
     assert_select 'a[href=?]', login_path , count: 0
     assert_select 'a[href=?]', logout_path
-    # TODO: uncomment test when changing dropdown render file
-    # assert_select 'a[href=?]', user_path(@user)
+    assert_select 'a[href=?]', user_path(@user)
   end
 
   test 'that valid login followed by logout' do

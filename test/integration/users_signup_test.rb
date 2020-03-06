@@ -14,6 +14,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     # test error messages
     assert_select 'div#error-explanation'
     assert_select 'div.field_with_errors'
+    assert_select 'div.alert', 'The form contains 4 errors.'
     # test flash message
     assert_select 'div.alert-warning'
   end

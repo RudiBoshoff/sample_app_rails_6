@@ -16,12 +16,28 @@ class UsersController < ApplicationController
       flash[:success] = "User successfully created"
       redirect_to @user
     else
-      flash[:warning] = "User sign up failed!"
+      flash.now[:warning] = "User sign up failed!"
       render 'new'
     end
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
 
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      flash[:success] = "Profile successfully updated"
+      redirect_to @user
+    else
+      flash.now[:warning] = "User update failed!"
+      render 'edit'
+    end
+
+  end
 
   private
 
