@@ -7,6 +7,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test 'that invalid update info does not update the current_user' do
+    log_in_as @user
     get edit_user_path(@user)
     assert_template 'users/edit'
     patch user_path(@user), params: { user: { name: '', 
@@ -24,6 +25,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test 'that valid update info does update the current_user' do
+    log_in_as @user
     get edit_user_path(@user)
     assert_template 'users/edit'
     user_name = 'updated name'
@@ -35,6 +37,32 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_redirected_to @user
     # check user details 
+    @user.reload
+    assert_equal user_name, @user.name
+    assert_equal user_email, @user.email
+  end
+
+  test 'that user is redirected from edit when not logged in' do
+    get edit_user_path(@user)
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
+
+  test 'that user is redirected from update when not loged in' do
+    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
+
+  test "that user is redirected to edit page if they weren't logged in and log in successfully (Friendly forwarding)" do
+    get edit_user_path(@user)
+    log_in_as(@user)
+    assert_redirected_to edit_user_path(@user)
+    user_name = "Updated name"
+    user_email = "updated@email.com"
+    patch user_path(@user), params: { user: { name: user_name, email: user_email } }
+    assert_not flash.empty?
+    assert_redirected_to @user
     @user.reload
     assert_equal user_name, @user.name
     assert_equal user_email, @user.email

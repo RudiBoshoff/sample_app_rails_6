@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  # User must be logged in in order to update a profile
+  before_action :logged_in_user, only: [:edit, :update, :index]
+  before_action :correct_user, only: [:edit, :update]
+
+  def index
+    @users = User.paginate(page: params[:page], per_page: 10)
+  end
 
   def show
     @user = User.find(params[:id])
@@ -44,5 +51,28 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-  
+
+    ############################################################################################
+    #  BEFORE ACTIONS
+    ############################################################################################
+
+    # confirms a user is logged in
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # confirms the correct user
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
+
+    # returns true if the given user is the correct user
+    def current_user?(user)
+      user &. == current_user
+    end
 end

@@ -2,7 +2,17 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'rails',      '6.0.2.1'
+
+# bcrypt() is a sophisticated and secure hash algorithm designed by The OpenBSD project for hashing passwords. 
 gem 'bcrypt',     '3.1.13'
+
+# Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
+gem 'faker',      '2.1.2'
+
+# will_paginate provides a simple API for performing paginated queries.
+gem 'will_paginate', '3.1.8'
+gem 'bootstrap-will_paginate', '1.0.0'
+
 gem 'bootstrap-sass', '3.4.1'
 gem 'puma',       '3.12.2'
 gem 'sass-rails', '5.1.0'
@@ -10,10 +20,6 @@ gem 'webpacker',  '4.0.7'
 gem 'turbolinks', '5.2.0'
 gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.4.5', require: false
-
-# Attempt to remove guard error messages
-# TODO: RUN 'bundle'
-gem 'pry', git: 'https://github.com/pry/pry.git', ref: '272b3290b5250d28ee82a5ff65aa3b29b825e37b'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'
