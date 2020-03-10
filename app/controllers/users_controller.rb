@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   # User must be logged in in order to update a profile
-  before_action :logged_in_user, only: [:edit, :update, :index]
+  before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
   before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.paginate(page: params[:page])
   end
 
   def show
@@ -43,9 +44,16 @@ class UsersController < ApplicationController
       flash.now[:warning] = "User update failed!"
       render 'edit'
     end
-
   end
 
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = 'User was successfully deleted.'
+    redirect_to users_url
+  end
+  
   private
 
     def user_params
@@ -74,5 +82,10 @@ class UsersController < ApplicationController
     # returns true if the given user is the correct user
     def current_user?(user)
       user &. == current_user
+    end
+
+    # Confirms that the user is an admin
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end

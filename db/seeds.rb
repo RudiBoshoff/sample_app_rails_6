@@ -10,12 +10,14 @@
 User.create!(name: "Example User",
              email: "example@railstutorial.org",
              password: "123456",
-             password_confirmation: "123456")
+             password_confirmation: "123456",
+             admin: true)
 
 User.create!(name: "Rudi Boshoff",
              email: "rudiboshoff15@gmail.com",
              password: "Lichking9",
-             password_confirmation: "Lichking9")
+             password_confirmation: "Lichking9",
+             admin: true)
 
 #  Generate new users
 
@@ -32,7 +34,7 @@ end
 
 93.times do |n|
     user_name = Faker::Name.name
-    user_email = "#{user_name.gsub(/\s+/,"").gsub(/\.+/,"")}#{n+1}#{["@gmail.com", "@yahoo.com", "@railstutorial.org"].shuffle.first}"
+    user_email = "#{user_name.gsub(/\s+/,"").gsub(/[^A-Za-z0-9]/,"")}#{n+1}#{["@gmail.com", "@yahoo.com", "@railstutorial.org"].shuffle.first}"
     user_password = "password"
     User.create!(name: user_name,
                  email: user_email,

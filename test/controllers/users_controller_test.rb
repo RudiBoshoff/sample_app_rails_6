@@ -30,4 +30,35 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_path
     assert_redirected_to login_url
   end
+  
+  test 'that admin attribute is not editable via the web' do
+    log_in_as @user2
+    assert_not @user2.admin?
+    patch user_path(@user2), params: { user: { password: 'password',
+                                               password_confirmation: 'password',
+                                               admin: true}}
+    assert_not @user2.reload.admin?
+  end
+
+  test 'that users are redirected if not logged in'do
+    assert_no_difference "User.count" do
+      delete user_path(@user)
+    end  
+    assert_redirected_to login_url
+  end
+
+  test 'that only admins can delete a user' do
+    log_in_as @user2
+    assert_no_difference "User.count" do
+      delete user_path(@user)
+    end
+    assert_redirected_to root_url
+  end
+
+  test "that an admin can delete a user" do
+    log_in_as @user
+    assert_difference "User.count", -1 do
+      delete user_path(@user2)
+    end
+  end
 end
