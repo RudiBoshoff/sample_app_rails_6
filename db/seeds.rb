@@ -7,17 +7,23 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Generate the original users
+user_password = "password"
+
 User.create!(name: "Example User",
              email: "example@railstutorial.org",
-             password: "123456",
-             password_confirmation: "123456",
-             admin: true)
+             password: user_password,
+             password_confirmation: user_password,
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
 
 User.create!(name: "Rudi Boshoff",
              email: "rudiboshoff15@gmail.com",
-             password: "Lichking9",
-             password_confirmation: "Lichking9",
-             admin: true)
+             password: user_password,
+             password_confirmation: user_password,
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
 
 #  Generate new users
 
@@ -25,19 +31,21 @@ User.create!(name: "Rudi Boshoff",
 4.times do |n|
     user_name = Faker::Name.name
     user_email = "example-#{n+1}@railstutorial.org"
-    user_password = "password"
     User.create!(name: user_name,
                  email: user_email,
                  password: user_password,
-                 password_confirmation: user_password)
+                 password_confirmation: user_password,
+                 activated: true,
+                 activated_at: Time.zone.now)
 end
 
 93.times do |n|
     user_name = Faker::Name.name
     user_email = "#{user_name.gsub(/\s+/,"").gsub(/[^A-Za-z0-9]/,"")}#{n+1}#{["@gmail.com", "@yahoo.com", "@railstutorial.org"].shuffle.first}"
-    user_password = "password"
     User.create!(name: user_name,
                  email: user_email,
                  password: user_password,
-                 password_confirmation: user_password)
+                 password_confirmation: user_password,
+                 activated: true,
+                 activated_at: Time.zone.now)
 end
