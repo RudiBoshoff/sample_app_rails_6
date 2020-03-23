@@ -17,7 +17,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_template 'users/edit'
     # test error messages
-    assert_select 'div#error-explanation'
+    assert_select 'div#error_explanation'
     assert_select 'div.field_with_errors'
     assert_select 'div.alert', 'The form contains 4 errors.'
     # test flash message
