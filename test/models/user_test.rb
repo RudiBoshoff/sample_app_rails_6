@@ -81,6 +81,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'that authenticated? returns false for a user with a remember_token of nil' do
-    assert_not @user.authenticated?('')
+    assert_not @user.authenticated?(:remember, '')
   end
 end
