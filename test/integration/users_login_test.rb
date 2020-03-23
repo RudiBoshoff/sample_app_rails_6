@@ -49,8 +49,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test 'login with remembering' do
     log_in_as(@user, remember_me: '1')
-    # assigns: gives us access to the instance variable(@user) passed in the create action of the controller
-    assert_equal cookies[:remember_token], assigns(:user).remember_token
+    assert_not_empty cookies[:remember_token]
   end
 
   test 'login without remembering' do
