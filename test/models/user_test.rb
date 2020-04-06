@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
   
   def setup
     @user = User.new(name: "User", email: "valid@example.com",
-                     password: '123456', password_confirmation: '123456')
+                     password: 'password', password_confirmation: 'password')
   end
   
   test "that user is valid" do
@@ -82,5 +82,13 @@ class UserTest < ActiveSupport::TestCase
 
   test 'that authenticated? returns false for a user with a remember_token of nil' do
     assert_not @user.authenticated?(:remember, '')
+  end
+
+  test "that the associated microposts are deleted with the user" do
+    @user.save
+    @user.microposts.create!(content: "Lorem ipsum")
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
   end
 end
