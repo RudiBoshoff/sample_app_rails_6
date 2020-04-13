@@ -1,7 +1,13 @@
 source 'https://rubygems.org'
+ruby '2.6.5'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-
 gem 'rails',      '6.0.2.1'
+
+# Upload files in your Ruby applications, map them to a range of ORMs, store them on different backends.
+gem 'carrierwave', '~> 2.1'
+
+# Manipulate images with minimal use of memory via ImageMagick / GraphicsMagick
+gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 
 # bcrypt() is a sophisticated and secure hash algorithm designed by The OpenBSD project for hashing passwords. 
 gem 'bcrypt',     '3.1.13'
@@ -22,6 +28,7 @@ gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.4.5', require: false
 
 group :development, :test do
+  gem 'pry', '~> 0.10.3'
   gem 'sqlite3', '1.4.1'
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]
 end
