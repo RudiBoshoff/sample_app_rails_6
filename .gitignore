@@ -37,3 +37,9 @@ yarn-debug.log*
 
 # Ignore db test files.
 db/test.*
+
+
+# Ignore uploaded test images.
+public/uploads/*
+
+.gitignore
