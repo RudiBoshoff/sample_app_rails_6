@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   get '/contact',   to:'static_pages#contact'
   
   # users
-  resources :users
   get '/signup',    to: 'users#new'
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   
   # sessions
   get 'login',      to: 'sessions#new'
@@ -26,4 +30,7 @@ Rails.application.routes.draw do
 
   # microposts
   resources :microposts,          only: [:create, :destroy]
+
+  # relationships
+  resources :relationships,        only: [:create, :destroy]
 end
