@@ -94,12 +94,35 @@ class UserTest < ActiveSupport::TestCase
 
   test "that a user can follow and unfollow another user" do
     user = users(:example_user)
-    other_user = users(:example_user_2)
+    other_user = users(:example_user_3)
     assert_not user.following?(other_user)
     user.follow(other_user)
     assert user.following?(other_user)
     assert other_user.followers.include?(user)
     user.unfollow(other_user)
     assert_not user.following?(other_user)
+  end
+
+  test "that a user's feed shows the correct posts" do
+    user = users(:example_user)
+    unfollowed_user = users(:example_user_3)
+    followed_user = users(:example_user_4)
+    assert_not user.following?(unfollowed_user)
+    assert user.following?(followed_user)
+
+    # posts from followed user
+    followed_user.microposts.each do |post|
+      assert user.feed.include?(post)
+    end
+
+    # posts from self
+    user.microposts.each do |post|
+      assert user.feed.include?(post)
+    end
+
+    # posts from unfollowed user
+    unfollowed_user.microposts.each do |post|
+      assert_not user.feed.include?(post)
+    end
   end
 end

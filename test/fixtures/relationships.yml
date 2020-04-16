@@ -5,7 +5,7 @@ one:
 
 two:
   follower: example_user
-  followed: example_user_3
+  followed: example_user_2
 
 three:
   follower: example_user_2
