@@ -60,6 +60,9 @@ end
 
 group :production do
   gem 'pg', '1.1.4'
+
+  # Official AWS Ruby gem for Amazon Simple Storage Service (Amazon S3). This gem is part of the AWS SDK for Ruby.
+  gem 'aws-sdk-s3', '~> 1.61', '>= 1.61.2', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
