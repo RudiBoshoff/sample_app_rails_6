@@ -3,11 +3,14 @@ ruby '2.6.5'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails',      '6.0.2.1'
 
-# Upload files in your Ruby applications, map them to a range of ORMs, store them on different backends.
-gem 'carrierwave', '~> 2.1'
-
 # Manipulate images with minimal use of memory via ImageMagick / GraphicsMagick
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
+
+# High-level wrapper for processing images for the web with ImageMagick or libvips
+gem 'image_processing', '~> 1.10', '>= 1.10.3'
+
+# Validations for Active Storage (presence)
+gem 'active_storage_validations', '~> 0.8.8'
 
 # bcrypt() is a sophisticated and secure hash algorithm designed by The OpenBSD project for hashing passwords. 
 gem 'bcrypt',     '3.1.13'
@@ -38,7 +41,6 @@ group :development do
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem "binding_of_caller"
 
-  
   gem 'web-console',           '4.0.1'
   gem 'listen',                '3.1.5'
   gem 'spring',                '2.1.0'
@@ -58,7 +60,6 @@ end
 
 group :production do
   gem 'pg', '1.1.4'
-  gem 'fog', '1.42'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
