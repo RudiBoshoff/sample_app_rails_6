@@ -1,4 +1,5 @@
 # Ruby on Rails Tutorial sample application
+This was coded following the Learn Web Development with Rails (6th Edition) by Michael Hartl textbook. It incorporates user roles, authentication, testing, CRUD posts and comments, error handling, image manipulation, pagination and more.
 
 This is the sample application for
 [*Ruby on Rails Tutorial:
