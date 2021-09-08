@@ -38,7 +38,7 @@ end
 
 group :development do
   # Better errors
-  gem 'better_errors', '~> 2.5', '>= 2.5.1'
+  gem 'better_errors', '~> 2.8'
   gem "binding_of_caller"
 
   gem 'web-console',           '4.0.1'
