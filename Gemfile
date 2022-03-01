@@ -7,7 +7,7 @@ gem 'rails',      '6.0.2.1'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 
 # High-level wrapper for processing images for the web with ImageMagick or libvips
-gem 'image_processing', '~> 1.10', '>= 1.10.3'
+gem 'image_processing', '~> 1.12'
 
 # Validations for Active Storage (presence)
 gem 'active_storage_validations', '~> 0.8.8'
